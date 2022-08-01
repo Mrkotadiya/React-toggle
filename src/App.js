@@ -68,7 +68,7 @@ class App extends Component {
               age={person.age}
               key={person.id}
               changed={(event)=>this.nameChangeHandler(event,person.id)}
-               />
+              />
             })}
       </div> 
       );
@@ -79,7 +79,7 @@ class App extends Component {
     // let classes = ['red','bold'].join(' ');
 
     const classes =[];
-    const element = document.createElement("p").innerHTML="This is Emtpty Page.";
+    // const element = document.createElement("p").innerHTML="This is Emtpty Page.";
 
    
     if(this.state.persons.length <=2){
@@ -88,9 +88,9 @@ class App extends Component {
     if(this.state.persons.length <=1){
       classes.push('bold');   // classes=['red','bold']
     }
-    if(this.state.persons.length <=0){
+    if(this.state.persons.length === 0){
       classes.push('red');     // classes=['red']
-      document.write(element);     // Page Empty
+      // document.write(element);     // Page Empty
     }
 
     return (
