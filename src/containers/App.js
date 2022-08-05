@@ -1,28 +1,66 @@
-import React, { Component } from "react";
-import  "./App.css";
+import React, { PureComponent } from "react";
+import "./App.css";
 // import classes from "./App.css";
 import Persons from "../components/Persons/Persons";
-import Cockpit from '../components/Cookpit/Cookpit';
+import Cockpit from "../components/Cookpit/Cookpit";
+
+class App extends PureComponent {
+  constructor(props) {
+    super(props);
+    console.log("[ App.js] Inside Constructor", props);
+    this.state = {
+      persons: [
+        { id: "asfa1", name: "Vinay", age: 28 },
+        { id: "vasdf1", name: "Nirbhay", age: 29 },
+        { id: "asdf11", name: "Saurabh", age: 26 },
+      ],
+      otherState: "some other value",
+      showPersons: false,
+    };
+  }
+// 
 
 
-class App extends Component {
-  state = {
-    persons: [
-      { id: 'asfa1', name: 'Vinay', age: 28 },
-      { id: 'vasdf1', name: 'Nirbhay', age: 29 },
-      { id: 'asdf11', name: 'Saurabh', age: 26 }
-    ],
-    otherState: 'some other value', 
-    showPersons: false
+  componentWillMount() {
+    console.log("[ App.js] Inside componentWillMount()");
+  }
+  componentDidMount(){
+    console.log('[ App.js] Inside componentDidMount');
   }
 
-  nameChangedHandler = ( event, id ) => {
-    const personIndex = this.state.persons.findIndex( p => {
+   
+  // shouldComponentUpdate(nextProps,nextState){
+  //   console.log('[Update App.js] Inside shouldComponentUpdate',nextProps,nextState);
+  //   return nextState.persons !== this.state.persons ||
+  //         nextState.showPersons !== this.state.showPersons;
+  // }
+  
+  componentWillReceiveProps(nextProps){
+    console.log('[Update App.js] inside ComponentWillReciveProps',nextProps );
+  }
+
+  componentDidUpdate(){
+    console.log('[UPDATE App.js] Inside componentDidUpdate');
+  }
+
+
+  // state = {
+  //   persons: [
+  //     { id: "asfa1", name: "Vinay", age: 28 },
+  //     { id: "vasdf1", name: "Nirbhay", age: 29 },
+  //     { id: "asdf11", name: "Saurabh", age: 26 },
+  //   ],
+  //   otherState: "some other value",
+  //   showPersons: false,
+  // };
+
+  nameChangedHandler = (event, id) => {
+    const personIndex = this.state.persons.findIndex((p) => {
       return p.id === id;
-    } );
+    });
 
     const person = {
-      ...this.state.persons[personIndex]
+      ...this.state.persons[personIndex],
     };
 
     // const person = Object.assign({}, this.state.persons[personIndex]);
@@ -32,38 +70,45 @@ class App extends Component {
     const persons = [...this.state.persons];
     persons[personIndex] = person;
 
-    this.setState( { persons: persons } );
-  }
+    this.setState({ persons: persons });
+  };
 
-  deletePersonHandler = ( personIndex ) => {
+  deletePersonHandler = (personIndex) => {
     // const persons = this.state.persons.slice();
     const persons = [...this.state.persons];
-    persons.splice( personIndex, 1 );
-    this.setState( { persons: persons } );
-  }
+    persons.splice(personIndex, 1);
+    this.setState({ persons: persons });
+  };
 
   togglePersonsHandler = () => {
     const doesShow = this.state.showPersons;
-    this.setState( { showPersons: !doesShow } );
-  }
+    this.setState({ showPersons: !doesShow });
+  };
 
-  render () {
+  render() {
+    console.log('[ App.js] Inside Render()');
+
     let persons = null;
 
-    if ( this.state.showPersons ) {
-      persons = <Persons
-        persons={this.state.persons}
-        clicked={this.deletePersonHandler}
-        changed={this.nameChangedHandler} />;
+    if (this.state.showPersons) {
+      persons = (
+        <Persons
+          persons={this.state.persons}
+          clicked={this.deletePersonHandler}
+          changed={this.nameChangedHandler}
+        />
+      );
     }
 
     return (
       <div>
+        <button onClick={()=>{this.setState({showPersons:true})}} className="btnShowPersons"> Show Persons</button>
         <Cockpit
           appTitle={this.props.title}
           showPersons={this.state.showPersons}
           persons={this.state.persons}
-          clicked={this.togglePersonsHandler} />
+          clicked={this.togglePersonsHandler}
+        />
         {persons}
       </div>
     );

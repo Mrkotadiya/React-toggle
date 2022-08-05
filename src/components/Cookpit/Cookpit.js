@@ -38,8 +38,6 @@
 
 
 import React from 'react';
-// import "./style.css"
-
 import  './Cookpit.css';
 
 const cockpit = ( props ) => {
@@ -53,10 +51,10 @@ const cockpit = ( props ) => {
     }
     if ( props.persons.length === 0 ) {
       assignedClasses.push( 'red' ); // classes = ['red', 'bold']
+      // const appTitle="Hello "
     }
-
     return (
-        <div className='title'>
+      <div className='title'>
             <h1>{ props.appTitle }</h1>
             <p className={assignedClasses.join( ' ' )}>This is really working!</p>
             <button 
