@@ -18,22 +18,33 @@
   background-color: #4CAF50; /* Green */
   border: none;
   color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-  -webkit-transition-duration: 0.4s; /* Safari */
-  transition-duration: 0.4s;
+  padding: 15px;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  /* text-align: center; */
+  /* text-decoration: none; */
+  /* display: inline-block; */
+  /* font-size: 16px; */
+  /* margin: 4px 2px; */
 }
-
+/* 
 .btn {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-}
+} */
 
 .btn:hover {
   background-color: rgb(254, 189, 105);
+  color: black;
   box-shadow: 0 15px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
+.btn.Red {
+  background-color: red;
+}
+  
+.btn.Red:hover {
+  background-color: salmon;
+  color: black;
+}
+
+.headPart{
+  margin-left: 46%;
 }

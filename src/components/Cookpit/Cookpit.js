@@ -9,7 +9,7 @@
 //     if (props.showPersons) {
 //         btnClass = 'Green';
 //     }
-    
+
 //     if(props .persons.length <=2){
 //       aclasses.push('Green');   // classes=['red','bold']
 //     }
@@ -20,7 +20,6 @@
 //       aclasses.push('red');     // classes=['red']
 //       // document.write(element);     // Page Empty
 //     }
-
 
 //   return (
 //     <div className={classes.Cockpit} >
@@ -35,33 +34,34 @@
 
 // export default cockpit;
 
+import React from "react";
+import "./Cookpit.css";
+import Aux from "../../hoc/Aux1";
 
+const cockpit = (props) => {
+  const assignedClasses = [];
 
-import React from 'react';
-import  './Cookpit.css';
-
-const cockpit = ( props ) => {
-    const assignedClasses = [];
-  
-    if ( props.persons.length <= 2 ) {
-      assignedClasses.push("Green"); // classes = ['red']
-    }
-    if ( props.persons.length <= 1 ) {
-      assignedClasses.push( 'bold' ); // classes = ['red', 'bold']
-    }
-    if ( props.persons.length === 0 ) {
-      assignedClasses.push( 'red' ); // classes = ['red', 'bold']
-      // const appTitle="Hello "
-    }
-    return (
-      <div className='title'>
-            <h1>{ props.appTitle }</h1>
-            <p className={assignedClasses.join( ' ' )}>This is really working!</p>
-            <button 
-            className='btn'
-            onClick={props.clicked}>Toggle Persons</button>
-        </div>
-    );
+  if (props.persons.length <= 2) {
+    assignedClasses.push("Green"); // classes = ['red']
+  }
+  if (props.persons.length <= 1) {
+    assignedClasses.push("bold"); // classes = ['red', 'bold']
+  }
+  if (props.persons.length === 0) {
+    assignedClasses.push("red"); // classes = ['red', 'bold']
+  }
+  return (
+    <Aux>
+      <div className="headPart">
+        <h1>{props.appTitle}</h1>
+        <p className={assignedClasses.join(" ")}>This is really working!</p>
+        <button className="btn" onClick={props.clicked}>
+          Toggle Persons
+        </button>
+        <button onClick={props.login}>Log In</button>
+      </div>
+    </Aux>
+  );
 };
 
 export default cockpit;
